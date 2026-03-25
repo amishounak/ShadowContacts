@@ -13,8 +13,7 @@ import com.shadowcontacts.app.databinding.ActivityInstructionsBinding
 class InstructionsActivity : AppCompatActivity() {
 
     companion object {
-        // Update this after publishing to GitHub
-        const val GITHUB_URL = "https://github.com/user/ShadowContacts"
+        const val GITHUB_URL = "https://github.com/amishounak/ShadowContacts"
     }
 
     private lateinit var binding: ActivityInstructionsBinding
