@@ -71,6 +71,54 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- GitHub link (shown only in full variant) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardGitHub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GitHub"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Shadow Contacts is available on GitHub. You can download the latest APK, report issues, or follow development there."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:lineSpacingMultiplier="1.4" />
+
+                    <TextView
+                        android:id="@+id/tvGitHubLinkFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="github.com/amishounak/ShadowContacts"
+                        android:textColor="@color/accent"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:padding="4dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Full Version promo (shown only in Play Store variant) -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardFullVersion"

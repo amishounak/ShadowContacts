@@ -31,11 +31,13 @@ class InstructionsActivity : AppCompatActivity() {
 
     private fun setupFlavorVisibility() {
         if (BuildConfig.HAS_CALLER_ID) {
-            // Full version: show caller ID sections, hide promo card
+            // Full version: show caller ID sections, show GitHub card, hide promo card
             findViewById<View>(R.id.cardCallerId).visibility = View.VISIBLE
             findViewById<View>(R.id.cardPermissions).visibility = View.VISIBLE
             findViewById<View>(R.id.cardRecommended).visibility = View.VISIBLE
             findViewById<View>(R.id.cardFullVersion).visibility = View.GONE
+            findViewById<View>(R.id.cardGitHub).visibility = View.VISIBLE
+            findViewById<View>(R.id.tvGitHubLinkFull).setOnClickListener { openGitHub() }
         } else {
             // Play Store version: hide caller ID sections, show promo card
             findViewById<View>(R.id.cardCallerId).visibility = View.GONE
