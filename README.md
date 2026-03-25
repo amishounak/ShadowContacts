@@ -4,6 +4,14 @@ A private, offline contact book for Android. Your contacts stay on your device â
 
 Built with Kotlin, MVVM architecture, and Material 3 design with an iOS-inspired aesthetic.
 
+## Download
+
+| Version | Download |
+|---|---|
+| Full (with Caller ID) | [ShadowContacts-v1.0.0-full.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.0/ShadowContacts-v1.0.0-full.apk) |
+
+> Enable **Install from unknown sources** in your Android settings before installing.
+
 ## Features
 
 **Private Contact Book**
