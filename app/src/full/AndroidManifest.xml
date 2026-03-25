@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Caller ID: detect incoming calls -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- Caller ID: get phone number on Android 10+ -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <!-- Caller ID: draw overlay on top of dialer -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Caller ID: keep service alive -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Caller ID: missed call notification -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application>
+        <service
+            android:name="com.shadowcontacts.app.callerid.CallerIdService"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.shadowcontacts.app.callerid.IncomingCallReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

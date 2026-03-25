@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_import_phone"
+        android:title="Import from Phone"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_import"
+        android:title="Import from Backup"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_export"
+        android:title="Export Contacts"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_appearance"
+        android:title="Appearance"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_caller_id"
+        android:title="Caller ID Popup"
+        android:checkable="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_instructions"
+        android:title="Instructions"
+        app:showAsAction="never" />
+
+</menu>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core brand -->
+    <color name="accent">#0A84FF</color>              <!-- iOS dark mode blue -->
+    <color name="accent_dark">#409CFF</color>
+
+    <!-- Backgrounds -->
+    <color name="background">#000000</color>           <!-- iOS dark systemBackground -->
+    <color name="surface">#1C1C1E</color>              <!-- iOS dark secondarySystemBackground -->
+    <color name="search_bg">#2C2C2E</color>            <!-- iOS dark search bar background -->
+    <color name="action_btn_bg">#1A2A3A</color>        <!-- dark blue tint for action buttons -->
+    <color name="selection_bg">#1A3050</color>          <!-- dark selection highlight -->
+
+    <!-- Text -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#98989D</color>       <!-- iOS dark secondaryLabel -->
+    <color name="text_tertiary">#636366</color>        <!-- iOS dark tertiaryLabel -->
+
+    <!-- Divider -->
+    <color name="divider">#38383A</color>
+
+    <!-- Danger -->
+    <color name="danger">#FF453A</color>               <!-- iOS dark red -->
+</resources>
