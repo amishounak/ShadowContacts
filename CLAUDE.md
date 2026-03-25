@@ -58,10 +58,10 @@ productFlavors {
 **Runtime checks** — Code uses `BuildConfig.HAS_CALLER_ID`:
 - `MainActivity.kt` → `onPrepareOptionsMenu()`: "Caller ID Popup" menu item is ALWAYS visible. In `full`, it has a checkbox (checkable=true). In `playstore`, no checkbox (checkable=false).
 - `MainActivity.kt` → `onOptionsItemSelected()`: In `full`, tapping calls `toggleCallerId()` (permission flow + enable/disable). In `playstore`, tapping calls `showCallerIdPromo()` — an 85%-width dialog explaining the Play Store limitation with an "Open GitHub" button linking to the repo.
-- `InstructionsActivity.kt` → `setupFlavorVisibility()`: In `full`, shows Caller ID, Permissions, and Recommended Settings cards. In `playstore`, hides those 3 cards and shows a "Full Version Available" promo card with clickable GitHub link.
+- `InstructionsActivity.kt` → `setupFlavorVisibility()`: In `full`, shows Caller ID, Permissions, Recommended Settings, and GitHub cards. In `playstore`, hides those 4 cards and shows a "Full Version Available" promo card with clickable GitHub link.
 - The caller ID Kotlin classes (`callerid/` package) compile in both flavors but are never invoked in `playstore`
 
-**GitHub URL constant**: `InstructionsActivity.GITHUB_URL` — single source of truth for the repo URL. Used by both the Instructions promo card and the caller ID promo dialog in `MainActivity`. **Must be updated after creating the GitHub repo** (currently placeholder `https://github.com/user/ShadowContacts`).
+**GitHub URL constant**: `InstructionsActivity.GITHUB_URL` — single source of truth for the repo URL (`https://github.com/amishounak/ShadowContacts`). Used by the Instructions GitHub card (full), the playstore promo card, and the caller ID promo dialog in `MainActivity`.
 
 ### Why this split exists
 
@@ -140,7 +140,7 @@ ShadowContacts/
         │       │   ├── activity_main.xml           # Dual toolbar, Dailygraph search bar, empty state, FAB
         │       │   ├── activity_contact_detail.xml # Call/SMS/WhatsApp buttons, form card
         │       │   ├── activity_phone_contact_picker.xml # Search, selection bar, list, import button
-        │       │   ├── activity_instructions.xml   # Cards with IDs: cardCallerId, cardPermissions, cardRecommended, cardFullVersion
+        │       │   ├── activity_instructions.xml   # Cards: cardGitHub, cardCallerId, cardPermissions, cardRecommended (full only), cardFullVersion (playstore only)
         │       │   ├── activity_group_manager.xml  # Legacy
         │       │   ├── item_contact.xml            # Card: checkbox + avatar + name/phone/desc + round action buttons
         │       │   ├── item_phone_contact.xml      # Picker: checkbox + avatar + name/phone + EXISTS badge
@@ -276,8 +276,8 @@ All under `"shadow_contacts_prefs"`:
 - **android.app.AlertDialog**: Used over MaterialAlertDialogBuilder for better button color control.
 - **Action buttons**: Call/SMS/WhatsApp icons sit in `bg_icon_circle.xml` (oval, search_bg color) for themed round containers.
 - **Playstore caller ID promo**: Menu item stays visible but non-checkable. Tapping opens a dialog explaining the Play Store limitation with an "Open GitHub" button. This ensures users discover the full version.
-- **GITHUB_URL constant**: Single source of truth in `InstructionsActivity.GITHUB_URL`. Referenced by both the Instructions promo card and the caller ID promo dialog. **MUST be updated** to actual repo URL after publishing (currently `https://github.com/user/ShadowContacts`).
-- **Instructions page flavor-awareness**: `activity_instructions.xml` has IDs on cards: `cardCallerId`, `cardPermissions`, `cardRecommended` (shown in full, hidden in playstore), `cardFullVersion` (hidden in full, shown in playstore with GitHub link). `InstructionsActivity.setupFlavorVisibility()` toggles them.
+- **GITHUB_URL constant**: Set to `https://github.com/amishounak/ShadowContacts` in `InstructionsActivity.GITHUB_URL`. Single source of truth — used by the full-flavor GitHub card, the playstore promo card, and the caller ID promo dialog in `MainActivity`.
+- **Instructions page flavor-awareness**: `activity_instructions.xml` has five cards: `cardGitHub`, `cardCallerId`, `cardPermissions`, `cardRecommended` (all shown in full, hidden in playstore), and `cardFullVersion` (hidden in full, shown in playstore). `InstructionsActivity.setupFlavorVisibility()` toggles visibility. The `cardGitHub` card links to the GitHub repo and is visible only in the full flavor.
 
 ## Common Tasks
 
@@ -293,11 +293,6 @@ All under `"shadow_contacts_prefs"`:
 ### Add a new menu item
 1. Add `<item>` to `menu_main.xml`
 2. Handle in `onOptionsItemSelected()` in `MainActivity.kt`
-
-### Update GitHub URL
-1. Open `InstructionsActivity.kt`
-2. Change `GITHUB_URL` constant to actual repo URL (e.g., `"https://github.com/yourusername/ShadowContacts"`)
-3. Both Instructions promo card and caller ID promo dialog will update automatically
 
 ### Change Caller ID overlay
 - Layout: `overlay_caller_id.xml`
