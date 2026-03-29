@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
@@ -56,9 +57,20 @@ class MainActivity : AppCompatActivity() {
         val phoneGranted = results[Manifest.permission.READ_PHONE_STATE] == true
         val callLogGranted = results[Manifest.permission.READ_CALL_LOG] == true
         if (phoneGranted && callLogGranted) {
-            checkOverlayAndEnableCallerId()
+            checkNotificationAndOverlayPermissions()
         } else {
             Toast.makeText(this, "Phone & Call Log permissions are required for Caller ID", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    // Notification permission launcher (Android 13+)
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            checkOverlayAndEnableCallerId()
+        } else {
+            Toast.makeText(this, "Notification permission is needed to show caller ID alerts", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -435,6 +447,18 @@ class MainActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CALL_LOG)
             )
             return
+        }
+        checkNotificationAndOverlayPermissions()
+    }
+
+    private fun checkNotificationAndOverlayPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                return
+            }
         }
         checkOverlayAndEnableCallerId()
     }

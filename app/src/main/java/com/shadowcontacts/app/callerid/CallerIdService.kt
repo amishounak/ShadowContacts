@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import com.shadowcontacts.app.R
 import com.shadowcontacts.app.data.ContactDatabase
+import com.shadowcontacts.app.ui.ContactDetailActivity
 import com.shadowcontacts.app.ui.MainActivity
 import kotlinx.coroutines.*
 import kotlin.math.abs
@@ -74,7 +75,7 @@ class CallerIdService : Service() {
             if (match != null) {
                 withContext(Dispatchers.Main) {
                     showOverlay(match.displayName(), match.description, match.phone)
-                    showNotification(match.displayName(), match.description, match.phone)
+                    showNotification(match.displayName(), match.description, match.phone, match.id)
                 }
             }
         }
@@ -112,12 +113,13 @@ class CallerIdService : Service() {
         }
     }
 
-    private fun showNotification(name: String, description: String, phone: String) {
-        val tapIntent = Intent(this, MainActivity::class.java).apply {
+    private fun showNotification(name: String, description: String, phone: String, contactId: Long) {
+        val tapIntent = Intent(this, ContactDetailActivity::class.java).apply {
+            putExtra("contact_id", contactId)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
         val pendingIntent = PendingIntent.getActivity(
-            this, 0, tapIntent,
+            this, contactId.toInt(), tapIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
