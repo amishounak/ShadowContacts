@@ -6,12 +6,21 @@ plugins {
 
 android {
     namespace = "com.shadowcontacts.app"
-    compileSdk = 34
+    compileSdk = 35
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("../release-keystore.jks")
+            storePassword = "dtt1992shnk"
+            keyAlias = "shadow-contacts"
+            keyPassword = "dtt1992shnk"
+        }
+    }
 
     defaultConfig {
         applicationId = "com.shadowcontacts.app"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -36,6 +45,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

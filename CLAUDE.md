@@ -84,7 +84,7 @@ Select `fullDebug` for development. Select `playstoreRelease` when building for 
 - **UI**: Material 3 + ViewBinding (no Compose, no DataBinding)
 - **Serialization**: Gson for JSON import/export
 - **AGP**: 8.7.0, **Gradle**: 8.9
-- **Min SDK**: 26 (Android 8.0), **Target SDK**: 34 (Android 14)
+- **Min SDK**: 26 (Android 8.0), **Target SDK**: 35 (Android 15)
 - **Package**: `com.shadowcontacts.app`
 
 ## Project Structure
@@ -332,6 +332,18 @@ buildTypes {
     }
 }
 ```
+
+## Known Fixes Applied
+
+### API 35 Edge-to-Edge (fixed 2026-03-29)
+Android 15 (API 35) enforces edge-to-edge by default, causing the toolbar to overlap the status bar.
+**Fix**: Added `<item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>` to `Theme.ShadowContacts` in both `values/themes.xml` and `values-night/themes.xml`. Same fix as Dailygraph.
+
+### Target SDK 35 (updated 2026-03-29)
+Google Play requires `targetSdk >= 35` as of 2026. Updated `compileSdk` and `targetSdk` from 34 to 35 in `app/build.gradle.kts`.
+
+### Release Signing (added 2026-03-29)
+Added `signingConfigs` block in `app/build.gradle.kts` referencing `../release-keystore.jks` (alias: `shadow-contacts`). Keystore is in `.gitignore`.
 
 ## Testing Notes
 

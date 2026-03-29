@@ -48,3 +48,4 @@ desktop.ini
 # Signing configs
 signing.properties
 keystore.properties
+release-keystore.jks

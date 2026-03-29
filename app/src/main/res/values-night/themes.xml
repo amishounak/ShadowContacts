@@ -11,6 +11,9 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:fontFamily">sans-serif</item>
 
+        <!-- Opt out of Android 15 edge-to-edge enforcement to prevent toolbar/status bar overlap -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+
         <item name="colorControlActivated">@color/accent</item>
 
         <item name="popupMenuStyle">@style/RoundedPopupMenu</item>

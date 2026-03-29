@@ -67,7 +67,7 @@ Built-in guide (Menu → Instructions) explaining all permissions, their purpose
 | UI | Material 3 + ViewBinding |
 | Serialization | Gson |
 | Min SDK | 26 (Android 8.0) |
-| Target SDK | 34 (Android 14) |
+| Target SDK | 35 (Android 15) |
 | AGP | 8.7.0 |
 | Kotlin | 2.0.21 |
 | Gradle | 8.9 |
