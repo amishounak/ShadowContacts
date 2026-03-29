@@ -177,8 +177,9 @@ ShadowContacts/
 ### Caller ID System (full flavor only)
 1. `IncomingCallReceiver` is declared as a **static manifest receiver** in `src/full/AndroidManifest.xml` with a `PHONE_STATE` intent-filter. There is no dynamic registration — `ShadowContactsApp` only does theme init.
 2. The on/off toggle works via `CallerIdPreferences`. `IncomingCallReceiver.onReceive()` checks `CallerIdPreferences.isEnabled()` as its second line and returns early if disabled. `MainActivity.toggleCallerId()` / `enableCallerId()` only flip the preference and call `invalidateOptionsMenu()` — they do not register or unregister the receiver.
-3. `IncomingCallReceiver` catches `PHONE_STATE_CHANGED`, handles Android 10+ double-broadcast (first=null number, second=real). Starts `CallerIdService`.
-4. `CallerIdService` queries Room on IO, normalizes numbers (last 10 digits), shows overlay via `WindowManager.TYPE_APPLICATION_OVERLAY` + notification. Draggable with Y position saved to SharedPreferences. Auto-dismiss after 30 seconds.
+3. **Permission flow** when enabling Caller ID: `enableCallerId()` → READ_PHONE_STATE + READ_CALL_LOG → `checkNotificationAndOverlayPermissions()` → POST_NOTIFICATIONS (Android 13+) → `checkOverlayAndEnableCallerId()` → SYSTEM_ALERT_WINDOW → set preference enabled. Each step checks if already granted and skips if so.
+4. `IncomingCallReceiver` catches `PHONE_STATE_CHANGED`, handles Android 10+ double-broadcast (first=null number, second=real). Starts `CallerIdService`.
+5. `CallerIdService` queries Room on IO, normalizes numbers (last 10 digits), shows overlay via `WindowManager.TYPE_APPLICATION_OVERLAY` + notification. Tapping the notification opens `ContactDetailActivity` for the matched contact (passes `contact_id` extra). Overlay is draggable with Y position saved to SharedPreferences. Auto-dismiss after 30 seconds.
 
 ### Dialog Pattern
 All dialogs use `android.app.AlertDialog` (NOT MaterialAlertDialogBuilder) with `R.style.IOSDialogTheme`. Button colors set AFTER `show()`. `enforceMinWidth()` sets 85% screen width.

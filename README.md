@@ -18,7 +18,7 @@ Built with Kotlin, MVVM architecture, and Material 3 design with an iOS-inspired
 Store contacts with Prefix, Name, Suffix, Phone, and Description fields. Names display as "Dr. John Smith, Jr." — comma before suffix. All data is stored locally in Room (SQLite). No internet required.
 
 **Caller ID Popup**
-When enabled, a floating popup appears over your screen during incoming calls, showing the contact's full name and description. The popup is draggable — slide it vertically to your preferred position and it remembers the placement across calls. Auto-dismisses after 30 seconds. A persistent notification is also created so you can identify missed calls from the notification bar.
+When enabled, a floating popup appears over your screen during incoming calls, showing the contact's full name and description. The popup is draggable — slide it vertically to your preferred position and it remembers the placement across calls. Auto-dismisses after 30 seconds. A persistent notification is also created so you can identify missed calls — tap it to jump straight to the contact's detail view.
 
 **Quick Actions**
 Three action buttons on every contact card — Call, SMS, and WhatsApp — each inside a themed circular background. Tap to call via dialer, send SMS, or open a WhatsApp chat directly without saving the contact in your phone's address book.
