@@ -165,7 +165,7 @@ For reliable Caller ID popup:
 
 ## License
 
-Private project. Not open source.
+[MIT License](LICENSE) — Copyright (c) 2026 Shounak Datta
 
 ---
 
