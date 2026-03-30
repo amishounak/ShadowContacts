@@ -345,6 +345,10 @@ Google Play requires `targetSdk >= 35` as of 2026. Updated `compileSdk` and `tar
 ### Release Signing (added 2026-03-29)
 Added `signingConfigs` block in `app/build.gradle.kts` referencing `../release-keystore.jks` (alias: `shadow-contacts`). Keystore is in `.gitignore`.
 
+### Version Code Bump (fixed 2026-03-30)
+Version code 1 was consumed by the initial Play Store draft upload (targetSdk 34). Play Store rejected the AAB because targetSdk must be ≥ 35, and version codes cannot be reused once uploaded.
+**Fix**: Bumped `versionCode` from 1 → 2 and `versionName` from `"1.0"` → `"1.0.1"` in `app/build.gradle.kts`. Rebuilt and re-uploaded the playstore AAB.
+
 ## Testing Notes
 
 - Caller ID requires a real phone call — cannot be tested in emulator
