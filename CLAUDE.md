@@ -379,9 +379,21 @@ Version code 1 was consumed by the initial Play Store draft upload (targetSdk 34
 - [ ] `./gradlew assembleFullRelease` → produces `app-full-release.apk`
 - [ ] `./gradlew bundlePlaystoreRelease` → produces `app-playstore-release.aab` (for Play Store)
 - [ ] `./gradlew assemblePlaystoreRelease` → produces `app-playstore-release.apk` (for GitHub)
+- [ ] Copy APKs with proper names (the `#` rename in `gh release create` does NOT work on Windows):
+  ```bash
+  cp app/build/outputs/apk/full/release/app-full-release.apk ShadowContacts-vX.X.X-full.apk
+  cp app/build/outputs/apk/playstore/release/app-playstore-release.apk ShadowContacts-vX.X.X-playstore.apk
+  ```
 
 **Step 3 — GitHub Release**
-- [ ] `gh release create vX.X.X "path/to/app-full-release.apk#ShadowContacts-vX.X.X-full.apk" "path/to/app-playstore-release.apk#ShadowContacts-vX.X.X-playstore.apk" --title "Shadow Contacts vX.X.X" --notes "..."`
+- [ ] Use the renamed copies, NOT the original build output files (otherwise README links will 404):
+  ```bash
+  gh release create vX.X.X \
+    "ShadowContacts-vX.X.X-full.apk" \
+    "ShadowContacts-vX.X.X-playstore.apk" \
+    --title "Shadow Contacts vX.X.X" --notes "..."
+  ```
+- [ ] Verify asset names after upload: `gh api repos/amishounak/ShadowContacts/releases/tags/vX.X.X --jq '.assets[].name'`
 
 **Step 4 — Play Store**
 - [ ] Go to Play Console → Shadow Contacts → Closed Testing → Create new release
@@ -395,6 +407,24 @@ Version code 1 was consumed by the initial Play Store draft upload (targetSdk 34
 - [ ] Update "Current Version" table in this CLAUDE.md
 - [ ] Update "Play Store Status" section in this CLAUDE.md
 - [ ] Commit and push all doc changes
+
+## Known Distribution Issues
+
+### Play Store vs Sideload Signing Conflict
+**Symptom**: "App not installed as package conflicts with an existing package" when trying to install the full APK on a device that already has Shadow Contacts from Google Play.
+
+**Cause**: Google Play App Signing re-signs the app with Google's own key before delivering it to users. The sideloaded full APK is signed with the original upload keystore. Android treats these as two different apps with the same package name and blocks the install.
+
+**User instructions (always include this in release notes and README):**
+1. **Export contacts first** — Menu → Export → save the JSON backup file
+2. Uninstall Shadow Contacts from the device
+3. Install the full APK
+4. Restore — Menu → Import → select the backup file
+
+**Long-term fix options** (for future consideration):
+- Publish the full flavor as a separate app with a different package ID (e.g., `com.shadowcontacts.app.full`) — eliminates the conflict entirely but splits the user base
+- Disable Google Play App Signing (not possible after enrollment — it's permanent)
+- Instruct users to never mix Play Store and sideloaded versions
 
 ## Testing Notes
 

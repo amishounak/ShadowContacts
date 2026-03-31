@@ -16,6 +16,16 @@ Built with Kotlin, MVVM architecture, and Material 3 design with an iOS-inspired
 
 > Enable **Install from unknown sources** in your Android settings before sideloading.
 
+### ⚠️ Switching from Play Store to Full APK
+
+If you have the **Play Store (closed testing) version** installed, you **cannot** install the full APK directly on top of it. Google Play re-signs apps with its own key — Android blocks installing a different-key APK over an existing app.
+
+**Steps to switch:**
+1. **Export your contacts first** — Menu → Export → save the JSON backup file
+2. Uninstall Shadow Contacts from your device
+3. Install `ShadowContacts-v1.0.1-full.apk`
+4. Restore — Menu → Import → select your backup file
+
 ## Features
 
 **Private Contact Book**
