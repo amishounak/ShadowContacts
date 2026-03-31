@@ -349,6 +349,53 @@ Added `signingConfigs` block in `app/build.gradle.kts` referencing `../release-k
 Version code 1 was consumed by the initial Play Store draft upload (targetSdk 34). Play Store rejected the AAB because targetSdk must be ≥ 35, and version codes cannot be reused once uploaded.
 **Fix**: Bumped `versionCode` from 1 → 2 and `versionName` from `"1.0"` → `"1.0.1"` in `app/build.gradle.kts`. Rebuilt and re-uploaded the playstore AAB.
 
+## Release Tracking
+
+### Current Version
+| Field | Value |
+|---|---|
+| versionName | 1.0.1 |
+| versionCode | 2 |
+| GitHub Release | [v1.0.1](https://github.com/amishounak/ShadowContacts/releases/tag/v1.0.1) |
+| Play Store Track | Closed Testing (Alpha) — Active |
+| Play Store Package | `com.shadowcontacts.app` |
+| Privacy Policy URL | `https://raw.githubusercontent.com/amishounak/ShadowContacts/master/PRIVACY_POLICY.md` |
+
+### Play Store Status (last updated 2026-04-01)
+- Closed testing release 2 (1.0.1): **Active and approved**
+- Countries: 177
+- Tester email list: "Shounak" — 5 emails
+- Opted-in testers: pending (14-day countdown not yet started)
+- Closed testing opt-in link: `https://play.google.com/apps/testing/com.shadowcontacts.app`
+
+### Release Checklist (do this every time you release a new version)
+
+**Step 1 — Code**
+- [ ] Update `versionCode` (+1) and `versionName` in `app/build.gradle.kts`
+- [ ] Test on a real device (both flavors if possible)
+- [ ] Commit and push to GitHub
+
+**Step 2 — Build**
+- [ ] `./gradlew assembleFullRelease` → produces `app-full-release.apk`
+- [ ] `./gradlew bundlePlaystoreRelease` → produces `app-playstore-release.aab` (for Play Store)
+- [ ] `./gradlew assemblePlaystoreRelease` → produces `app-playstore-release.apk` (for GitHub)
+
+**Step 3 — GitHub Release**
+- [ ] `gh release create vX.X.X "path/to/app-full-release.apk#ShadowContacts-vX.X.X-full.apk" "path/to/app-playstore-release.apk#ShadowContacts-vX.X.X-playstore.apk" --title "Shadow Contacts vX.X.X" --notes "..."`
+
+**Step 4 — Play Store**
+- [ ] Go to Play Console → Shadow Contacts → Closed Testing → Create new release
+- [ ] Upload the `.aab` file (NOT the `.apk`)
+- [ ] Fill in release notes
+- [ ] Save and submit for review
+
+**Step 5 — Documentation**
+- [ ] Add entry to `CHANGELOG.md`
+- [ ] Update version numbers in `README.md` download links
+- [ ] Update "Current Version" table in this CLAUDE.md
+- [ ] Update "Play Store Status" section in this CLAUDE.md
+- [ ] Commit and push all doc changes
+
 ## Testing Notes
 
 - Caller ID requires a real phone call — cannot be tested in emulator
