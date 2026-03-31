@@ -50,8 +50,13 @@
                     android:layout_weight="1"
                     android:text="Call"
                     android:textAllCaps="false"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="13sp"
                     app:icon="@drawable/ic_phone"
+                    app:iconSize="18dp"
                     app:iconGravity="textStart"
+                    app:iconPadding="4dp"
                     app:backgroundTint="@color/action_btn_bg"
                     android:textColor="@color/accent" />
 
@@ -64,8 +69,13 @@
                     android:layout_weight="1"
                     android:text="SMS"
                     android:textAllCaps="false"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="13sp"
                     app:icon="@drawable/ic_message"
+                    app:iconSize="18dp"
                     app:iconGravity="textStart"
+                    app:iconPadding="4dp"
                     app:backgroundTint="@color/action_btn_bg"
                     android:textColor="@color/accent" />
 
@@ -78,8 +88,13 @@
                     android:layout_weight="1"
                     android:text="WhatsApp"
                     android:textAllCaps="false"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="13sp"
                     app:icon="@drawable/ic_whatsapp"
+                    app:iconSize="18dp"
                     app:iconGravity="textStart"
+                    app:iconPadding="4dp"
                     app:iconTint="@null"
                     app:backgroundTint="@color/action_btn_bg"
                     android:textColor="#25D366" />

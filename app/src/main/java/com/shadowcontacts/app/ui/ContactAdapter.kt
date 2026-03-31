@@ -174,6 +174,9 @@ class ContactAdapter(
                     callBtn.visibility = View.VISIBLE
                     msgBtn.visibility = View.VISIBLE
                     waBtn.visibility = View.VISIBLE
+                    // Clear tint programmatically — some OEM ROMs apply a default tint
+                    // to ImageButton via theme, overriding the green WhatsApp icon color.
+                    waBtn.imageTintList = null
                 } else {
                     actionButtons.visibility = View.GONE
                 }

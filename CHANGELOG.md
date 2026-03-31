@@ -5,6 +5,15 @@ Format: `[version] — date — description`
 
 ---
 
+## [1.0.2] — 2026-04-01
+
+### Fixed
+- **WhatsApp button text wrapping** — "WhatsApp" was breaking into two lines ("What" / "sApp") on smaller screens due to equal `layout_weight` with no `maxLines` constraint. Fixed by adding `android:maxLines="1"` + `android:ellipsize="end"` + `android:textSize="13sp"` + `app:iconSize="18dp"` to all three action buttons in `activity_contact_detail.xml`.
+- **WhatsApp icon tint on some devices** — `app:iconTint="@null"` in XML is ignored by `MaterialButton` on certain Android versions and OEM ROMs (MIUI, ColorOS, etc.), causing the green WhatsApp icon to appear grey/blue. Fixed by setting `binding.btnWhatsApp.iconTint = null` programmatically in `ContactDetailActivity.setupActionButtons()`.
+- **WhatsApp icon tint in contact list** — Same OEM tinting issue on the `ImageButton` in `item_contact.xml`. Fixed by setting `waBtn.imageTintList = null` in `ContactAdapter.bind()`.
+
+---
+
 ## [1.0.1] — 2026-03-30
 
 ### Changed

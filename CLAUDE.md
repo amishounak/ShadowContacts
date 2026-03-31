@@ -354,9 +354,9 @@ Version code 1 was consumed by the initial Play Store draft upload (targetSdk 34
 ### Current Version
 | Field | Value |
 |---|---|
-| versionName | 1.0.1 |
-| versionCode | 2 |
-| GitHub Release | [v1.0.1](https://github.com/amishounak/ShadowContacts/releases/tag/v1.0.1) |
+| versionName | 1.0.2 |
+| versionCode | 3 |
+| GitHub Release | [v1.0.2](https://github.com/amishounak/ShadowContacts/releases/tag/v1.0.2) |
 | Play Store Track | Closed Testing (Alpha) — Active |
 | Play Store Package | `com.shadowcontacts.app` |
 | Privacy Policy URL | `https://raw.githubusercontent.com/amishounak/ShadowContacts/master/PRIVACY_POLICY.md` |

@@ -99,6 +99,11 @@ class ContactDetailActivity : AppCompatActivity() {
     }
 
     private fun setupActionButtons() {
+        // Force-clear the icon tint on WhatsApp button programmatically.
+        // app:iconTint="@null" in XML is ignored by MaterialButton on some devices/OEM ROMs,
+        // causing the green WhatsApp icon to be tinted grey/blue. Setting it in code is reliable.
+        binding.btnWhatsApp.iconTint = null
+
         binding.btnCall.setOnClickListener {
             val phone = binding.editPhone.text.toString().trim()
             if (phone.isNotBlank()) {
