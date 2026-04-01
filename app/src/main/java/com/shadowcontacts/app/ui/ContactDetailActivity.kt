@@ -104,6 +104,17 @@ class ContactDetailActivity : AppCompatActivity() {
         // causing the green WhatsApp icon to be tinted grey/blue. Setting it in code is reliable.
         binding.btnWhatsApp.iconTint = null
 
+        // Adaptive labels: after layout, check if "WhatsApp" (longest label) is truncated.
+        // If it is, switch ALL buttons to icon-only mode for a clean, consistent look.
+        binding.btnWhatsApp.post {
+            val layout = binding.btnWhatsApp.layout
+            if (layout != null && layout.lineCount > 0 && layout.getEllipsisCount(0) > 0) {
+                binding.btnCall.text = ""
+                binding.btnMessage.text = ""
+                binding.btnWhatsApp.text = ""
+            }
+        }
+
         binding.btnCall.setOnClickListener {
             val phone = binding.editPhone.text.toString().trim()
             if (phone.isNotBlank()) {

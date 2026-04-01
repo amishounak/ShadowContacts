@@ -6,12 +6,12 @@ Built with Kotlin, MVVM architecture, and Material 3 design with an iOS-inspired
 
 ## Download
 
-**Latest: v1.0.2** — See [CHANGELOG.md](CHANGELOG.md) for version history.
+**Latest: v1.0.3** — See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 | Flavor | Download |
 |---|---|
-| Full (with Caller ID) | [ShadowContacts-v1.0.2-full.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.2/ShadowContacts-v1.0.2-full.apk) |
-| Play Store (no Caller ID) | [ShadowContacts-v1.0.2-playstore.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.2/ShadowContacts-v1.0.2-playstore.apk) |
+| Full (with Caller ID) | [ShadowContacts-v1.0.3-full.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.3/ShadowContacts-v1.0.3-full.apk) |
+| Play Store (no Caller ID) | [ShadowContacts-v1.0.3-playstore.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.3/ShadowContacts-v1.0.3-playstore.apk) |
 | Google Play (closed testing) | [Join the beta](https://play.google.com/apps/testing/com.shadowcontacts.app) |
 
 > Enable **Install from unknown sources** in your Android settings before sideloading.
@@ -156,8 +156,8 @@ app/src/main/java/com/shadowcontacts/app/
 
 | Flavor | Caller ID | Target Distribution | Download |
 |---|---|---|---|
-| `full` | Yes — all telephony permissions | GitHub, F-Droid, sideloading | [ShadowContacts-v1.0.2-full.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.2/ShadowContacts-v1.0.2-full.apk) |
-| `playstore` | No — stripped for Play Store compliance | Google Play Store | [ShadowContacts-v1.0.2-playstore.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.2/ShadowContacts-v1.0.2-playstore.apk) |
+| `full` | Yes — all telephony permissions | GitHub, F-Droid, sideloading | [ShadowContacts-v1.0.3-full.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.3/ShadowContacts-v1.0.3-full.apk) |
+| `playstore` | No — stripped for Play Store compliance | Google Play Store | [ShadowContacts-v1.0.3-playstore.apk](https://github.com/amishounak/ShadowContacts/releases/download/v1.0.3/ShadowContacts-v1.0.3-playstore.apk) |
 
 ```bash
 ./gradlew assembleFullDebug          # Full with Caller ID

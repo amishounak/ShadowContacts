@@ -5,6 +5,13 @@ Format: `[version] — date — description`
 
 ---
 
+## [1.0.3] — 2026-04-01
+
+### Improved
+- **Adaptive action button labels** — On devices where "WhatsApp" text would be truncated (showing "Wha..."), all three buttons now automatically switch to icon-only mode. On larger screens where the text fits, labels remain visible. Detection uses the actual rendered layout at runtime, so it works correctly on every screen size, font scale, and density.
+
+---
+
 ## [1.0.2] — 2026-04-01
 
 ### Fixed
